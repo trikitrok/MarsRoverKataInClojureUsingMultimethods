@@ -3,12 +3,19 @@
 (defn rover [x y direction]
   {:x x :y y :direction direction})
 
+(defmulti rotate 
+  (fn [the-rover command] 
+    [(:direction the-rover) command]))
 
-(defn receive [{x :x y :y direction :direction} commands]
+(defmethod rotate [:north "l"] [{x :x y :y} _]
+    (rover x y :west))
+
+(defmethod rotate [:north "r"] [{x :x y :y} _]
+    (rover x y :east))
+
+(defn receive [{x :x y :y direction :direction :as the-rover} commands]
   
-  (cond (= :north direction) (if (= commands "l")
-                               (rover 0 0 :west)
-                               (rover 0 0 :east))
+  (cond (= :north direction) (rotate the-rover commands)
         
         (= :south direction) (if (= commands "l")
                                (rover 0 0 :east)
