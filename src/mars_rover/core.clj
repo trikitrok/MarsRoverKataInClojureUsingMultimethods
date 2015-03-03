@@ -65,7 +65,11 @@
    "f" move-forwards
    "b" move-backwards})
 
-(defn receive [the-rover signals]
-  (reduce #((commands-by-signal (str %2)) %1) 
+(defn commands [messages]
+  (map #(commands-by-signal (str %))
+       messages))
+
+(defn receive [the-rover messages]
+  (reduce #(%2 %1) 
           the-rover
-          signals))
+          (commands messages)))
