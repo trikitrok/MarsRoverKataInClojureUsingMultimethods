@@ -66,4 +66,6 @@
    "b" move-backwards})
 
 (defn receive [the-rover signals]
-  ((commands-by-signal signals) the-rover))
+  (reduce #((commands-by-signal (str %2)) %1) 
+          the-rover
+          signals))

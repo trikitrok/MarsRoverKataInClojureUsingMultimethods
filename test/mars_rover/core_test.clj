@@ -130,4 +130,10 @@
         "it moves backwards"
         (receive
           (rover 0 0 :west)
-          "b") => (rover 1 0 :west)))))
+          "b") => (rover 1 0 :west))))
+  
+  (fact 
+    "it can receive several messages"
+    (receive
+      (rover 0 0 :north)
+      "brfflbrbrff") => (rover 1 -4 :south)))
