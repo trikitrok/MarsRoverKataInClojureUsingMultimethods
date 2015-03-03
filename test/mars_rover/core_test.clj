@@ -19,4 +19,13 @@
       "it turns left"
       (receive 
         (rover 0 0 :north) 
-        "l") => (rover 0 0 :west))))
+        "l") => (rover 0 0 :west)))
+  
+  (facts
+    "when facing south"
+    
+    (fact 
+      "it turns right"
+      (receive
+        (rover 0 0 :south)
+        "r") => (rover 0 0 :west))))
