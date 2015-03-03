@@ -13,4 +13,10 @@
       "it turns right"
       (receive 
         {:x 0 :y 0 :direction :north} 
-        "r") => {:x 0 :y 0 :direction :east})))
+        "r") => {:x 0 :y 0 :direction :east})
+    
+    (fact 
+      "it turns left"
+      (receive 
+        {:x 0 :y 0 :direction :north} 
+        "l") => {:x 0 :y 0 :direction :west})))
