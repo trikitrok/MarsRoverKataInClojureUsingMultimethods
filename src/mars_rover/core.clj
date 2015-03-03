@@ -50,6 +50,9 @@
 (defmethod move-backwards :south [{x :x y :y direction :direction}]
   (rover x (inc y) direction))
 
+(defmethod move-backwards :east [{x :x y :y direction :direction}]
+  (rover (dec x) y direction))
+
 (def commands-by-signal 
   {"r" rotate-right
    "l" rotate-left
