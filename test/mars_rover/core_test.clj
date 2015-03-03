@@ -12,11 +12,11 @@
     (fact 
       "it turns right"
       (receive 
-        {:x 0 :y 0 :direction :north} 
-        "r") => {:x 0 :y 0 :direction :east})
+        (rover 0 0 :north)
+        "r") => (rover 0 0 :east))
     
     (fact 
       "it turns left"
       (receive 
-        {:x 0 :y 0 :direction :north} 
-        "l") => {:x 0 :y 0 :direction :west})))
+        (rover 0 0 :north) 
+        "l") => (rover 0 0 :west))))
