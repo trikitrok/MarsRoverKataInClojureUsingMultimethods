@@ -69,7 +69,10 @@
   (map #(commands-by-signal (str %))
        messages))
 
-(defn receive [the-rover messages]
-  (reduce #(%2 %1) 
-          the-rover
+(defn apply-command [rover command]
+  (command rover))
+
+(defn receive [rover messages]
+  (reduce apply-command 
+          rover 
           (commands messages)))
