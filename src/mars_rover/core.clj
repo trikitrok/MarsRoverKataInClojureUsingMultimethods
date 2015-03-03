@@ -15,8 +15,10 @@
                                (rover 0 0 :west))
         
         (= :east direction) (if (= commands "l")
-                (rover 0 0 :north)
-                (rover 0 0 :south))
+                              (rover 0 0 :north)
+                              (rover 0 0 :south))
         
-        :else (rover 0 0 :north)))
+        :else (if (= commands "l")
+                (rover 0 0 :south)
+                (rover 0 0 :north))))
 
