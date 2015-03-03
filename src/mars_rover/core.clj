@@ -11,5 +11,8 @@
     (if (= commands "l")
       (rover 0 0 :west)
       (rover 0 0 :east))
-    (rover 0 0 :west)))
+    
+    (if (= commands "l")
+      (rover 0 0 :east)
+      (rover 0 0 :west))))
 
