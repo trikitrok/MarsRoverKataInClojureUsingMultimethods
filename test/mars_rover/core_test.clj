@@ -100,4 +100,13 @@
         "it moves backwards"
         (receive
           (rover 0 0 :south)
-          "b") => (rover 0 1 :south)))))
+          "b") => (rover 0 1 :south)))
+    
+    (facts 
+      "when facing east"
+      
+      (fact 
+        "it moves forwards"
+        (receive
+          (rover 0 0 :east)
+          "f") => (rover 1 0 :east)))))
