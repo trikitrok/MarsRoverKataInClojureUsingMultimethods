@@ -33,16 +33,16 @@
 
 (defmulti move-forwards :direction)
 
-(defmethod move-forwards :north [{x :x y :y}]
-  (rover x (inc y) :north))
+(defmethod move-forwards :north [{x :x y :y direction :direction}]
+  (rover x (inc y) direction))
 
-(defmethod move-forwards :south [{x :x y :y}]
-  (rover x (dec y) :south))
+(defmethod move-forwards :south [{x :x y :y direction :direction}]
+  (rover x (dec y) direction))
 
 (defmulti move-backwards :direction)
 
-(defmethod move-backwards :north [{x :x y :y}]
-  (rover x (dec y) :north))
+(defmethod move-backwards :north [{x :x y :y direction :direction}]
+  (rover x (dec y) direction))
 
 (def commands-by-signal 
   {"r" rotate-right
