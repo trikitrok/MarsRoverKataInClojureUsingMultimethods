@@ -36,6 +36,9 @@
 (defmethod move-forwards :north [{x :x y :y}]
   (rover x (inc y) :north))
 
+(defmethod move-forwards :south [{x :x y :y}]
+  (rover x (dec y) :south))
+
 (defmulti move-backwards :direction)
 
 (defmethod move-backwards :north [{x :x y :y}]
