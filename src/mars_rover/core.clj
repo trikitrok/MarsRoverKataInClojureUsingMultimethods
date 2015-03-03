@@ -4,9 +4,9 @@
   {:x x :y y :direction direction})
 
 
-(defn receive [the-rover commands]
+(defn receive [{x :x y :y direction :direction} commands]
   
-  (if (= :north (the-rover :direction))
+  (if (= :north direction)
     
     (if (= commands "l")
       (rover 0 0 :west)
