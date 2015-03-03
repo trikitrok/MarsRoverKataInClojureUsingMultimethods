@@ -7,7 +7,7 @@
   "about mars rover"
   
   (facts 
-    "about rotations"
+    "rotations"
     
     (facts 
       "when facing north"
@@ -67,4 +67,15 @@
         "it turns left"
         (receive
           (rover 0 0 :west)
-          "l") => (rover 0 0 :south)))))
+          "l") => (rover 0 0 :south))))
+  
+  (facts 
+    "movements"
+    
+    (facts 
+      "when facing north"
+      (fact 
+        "it moves forward"
+        (receive
+          (rover 0 0 :north)
+          "f") => (rover 0 1 :north)))))
