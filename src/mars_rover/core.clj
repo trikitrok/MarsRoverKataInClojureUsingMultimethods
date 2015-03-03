@@ -42,6 +42,9 @@
 (defmethod move-forwards :east [{x :x y :y direction :direction}]
   (rover (inc x) y direction))
 
+(defmethod move-forwards :west [{x :x y :y direction :direction}]
+  (rover (dec x) y direction))
+
 (defmulti move-backwards :direction)
 
 (defmethod move-backwards :north [{x :x y :y direction :direction}]
