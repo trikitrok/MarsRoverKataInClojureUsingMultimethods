@@ -36,10 +36,16 @@
 (defmethod move-forwards :north [{x :x y :y}]
   (rover x (inc y) :north))
 
+(defmulti move-backwards :direction)
+
+(defmethod move-backwards :north [{x :x y :y}]
+  (rover x (dec y) :north))
+
 (def commands-by-signal 
   {"r" rotate-right
    "l" rotate-left
-   "f" move-forwards})
+   "f" move-forwards
+   "b" move-backwards})
 
 (defn receive [the-rover signals]
   ((commands-by-signal signals) the-rover))

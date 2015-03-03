@@ -74,8 +74,15 @@
     
     (facts 
       "when facing north"
+      
       (fact 
-        "it moves forward"
+        "it moves forwards"
         (receive
           (rover 0 0 :north)
-          "f") => (rover 0 1 :north)))))
+          "f") => (rover 0 1 :north))
+      
+      (fact 
+        "it moves backwards"
+        (receive
+          (rover 0 0 :north)
+          "b") => (rover 0 -1 :north)))))
