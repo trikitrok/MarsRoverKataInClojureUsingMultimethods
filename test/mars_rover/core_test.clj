@@ -140,20 +140,10 @@
   
   (facts
     "about worlds"
-    
-    (fact
-      "square world knows if a rover is inside or outside it"
-      
-      (let [inside-world? ((square-world 1 1 2) :inside?)]
-        (inside-world? 
-          (rover 1 1 :north)) => true
-        (inside-world? 
-          (rover 4 1 :north)) => false
-        (inside-world? 
-          (rover 0 1 :north)) => false
-        (inside-world? 
-          (rover 1 4 :north)) => false
-        (inside-world? 
-          (rover 1 0 :north)) => false
-        (inside-world? 
-          (rover 3 3 :north)) => true))))
+    (facts 
+      "wraping rovers into them"
+      (let [world (square-world 1 1 2)]
+        (receive
+          (rover 1 3 :north)
+          "f"
+          :world world) => (rover 1 2 :north)))))
