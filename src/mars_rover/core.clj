@@ -94,7 +94,8 @@
         :rover new-rover))))
 
 (defn receive [rover messages & {world :world :or {world infinite-world}}]
-  (:rover 
-    (reduce apply-command 
-            {:rover rover :world world}
-            (commands messages))))
+  (if (hit-obstacle? rover (world :obstacles))
+    (throw (IllegalArgumentException. "Initial position is on an obstacle!"))
+    (:rover (reduce apply-command 
+              {:rover rover :world world}
+              (commands messages)))))

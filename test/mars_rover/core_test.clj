@@ -179,4 +179,10 @@
       (receive
         (rover 1 2 :east)
         "lfrfrf"
-        :world world) => (rover 2 3 :south))))
+        :world world) => (rover 2 3 :south)
+      
+      (fact 
+        "initial position not being on an obstacle"
+        (receive
+          (rover 2 2 :east) "f":world world) 
+        => (throws IllegalArgumentException "Initial position is on an obstacle!")))))
