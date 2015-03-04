@@ -93,9 +93,12 @@
       (assoc rover-and-world 
         :rover new-rover))))
 
+(defn validate-initial-position [rover {obstacles :obstacles}]
+  (when (hit-obstacle? rover obstacles)
+    (throw (IllegalArgumentException. "Initial position is on an obstacle!"))))
+
 (defn receive [rover messages & {world :world :or {world infinite-world}}]
-  (if (hit-obstacle? rover (world :obstacles))
-    (throw (IllegalArgumentException. "Initial position is on an obstacle!"))
+    (validate-initial-position rover world)
     (:rover (reduce apply-command 
               {:rover rover :world world}
-              (commands messages)))))
+              (commands messages))))
