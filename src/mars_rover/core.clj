@@ -7,8 +7,10 @@
   {:dimensions {:x x :y y :size size}
    :inside? (fn [{x-rover :x y-rover :y}] 
               (and
-                (<= (Math/abs (- x-rover x)) size)
-                (<= (Math/abs (- y-rover y)) size)))})
+                (<= x x-rover)
+                (<= y y-rover)
+                (<= (- x-rover x) size)
+                (<= (- y-rover y) size)))})
 
 (def infinite-world 
   {:inside? (fn [{x-rover :x y-rover :y}] true)

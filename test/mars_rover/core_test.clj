@@ -144,16 +144,16 @@
     (fact
       "square world knows if a rover is inside or outside it"
       
-      (let [inside-world? ((square-world 0 0 2) :inside?)]
+      (let [inside-world? ((square-world 1 1 2) :inside?)]
         (inside-world? 
-          (rover 0 0 :north)) => true
+          (rover 1 1 :north)) => true
         (inside-world? 
-          (rover 3 0 :north)) => false
+          (rover 4 1 :north)) => false
         (inside-world? 
-          (rover -3 0 :north)) => false
+          (rover 0 1 :north)) => false
         (inside-world? 
-          (rover 0 3 :north)) => false
+          (rover 1 4 :north)) => false
         (inside-world? 
-          (rover 0 -3 :north)) => false
+          (rover 1 0 :north)) => false
         (inside-world? 
-          (rover 0 -2 :north)) => true))))
+          (rover 3 3 :north)) => true))))
