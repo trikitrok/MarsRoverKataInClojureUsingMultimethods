@@ -149,4 +149,8 @@
         (inside-world? 
           (rover 3 0 :north)) => false
         (inside-world? 
-          (rover -3 0 :north)) => false))))
+          (rover -3 0 :north)) => false
+        (inside-world? 
+          (rover 0 3 :north)) => false
+        (inside-world? 
+          (rover 0 -3 :north)) => false))))
