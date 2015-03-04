@@ -9,6 +9,9 @@
       (< (Math/abs (- x-rover x)) size)
       (< (Math/abs (- y-rover y)) size))))
 
+(defn infinite-world [{x-rover :x y-rover :y}]
+  true)
+
 (defmulti rotate-left :direction)
 
 (defmethod rotate-left :north [{x :x y :y}]
@@ -75,10 +78,14 @@
   (map #(commands-by-signal (str %))
        messages))
 
-(defn apply-command [rover command]
-  (command rover))
+(defn apply-command [{rover :rover inside-world? :world :as rover-and-world} command]
+  (let [new-rover (command rover)]
+    (if (inside-world? new-rover)
+      (assoc rover-and-world :rover new-rover)
+      rover-and-world)))
 
-(defn receive [rover messages]
-  (reduce apply-command 
-          rover 
-          (commands messages)))
+(defn receive [rover messages & {world :world :or {world infinite-world}}]
+  (:rover 
+    (reduce apply-command 
+            {:rover rover :world world}
+            (commands messages))))
