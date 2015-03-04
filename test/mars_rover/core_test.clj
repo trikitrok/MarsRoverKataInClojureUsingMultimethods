@@ -164,8 +164,19 @@
   
   (facts 
     "hitting obstacles"
+    
     (let [world (square-world 1 1 2 {:x 2 :y 2} {:x 2 :y 1})]
       (receive
         (rover 1 2 :east)
         "f"
-        :world world) => (rover 1 2 :east))))
+        :world world) => (rover 1 2 :east)
+      
+      (receive
+        (rover 1 2 :east)
+        "lfrf"
+        :world world) => (rover 2 3 :east)
+      
+      (receive
+        (rover 1 2 :east)
+        "lfrfrf"
+        :world world) => (rover 2 3 :south))))
