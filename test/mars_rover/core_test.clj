@@ -155,4 +155,9 @@
       (receive
         (rover 3 1 :east)
         "f"
-        :world world) => (rover 2 1 :east))))
+        :world world) => (rover 2 1 :east)
+      
+      (receive
+        (rover 1 1 :west)
+        "f"
+        :world world) => (rover 2 1 :west))))

@@ -9,6 +9,7 @@
                 (and (> y-rover y) (> (- y-rover y) size)) (assoc-in rover [:y] (- y-rover size))
                 (and (< y-rover y) (< (- y y-rover) size)) (assoc-in rover [:y] (+ y-rover size))
                 (and (> x-rover x) (> (- x-rover x) size)) (assoc-in rover [:x] (- x-rover size))
+                (and (< x-rover x) (< (- x x-rover) size)) (assoc-in rover [:x] (+ x-rover size))
                 :else rover))})
 
 (def infinite-world 
