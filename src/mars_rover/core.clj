@@ -3,17 +3,19 @@
 (defn rover [x y direction]
   {:x x :y y :direction direction})
 
-(defn square-world [x y size]
+(defn square-world [x y size & obstacles]
   {:wrap-fn (fn [{x-rover :x y-rover :y :as rover}] 
               (cond 
                 (and (> y-rover y) (> (- y-rover y) size)) (assoc-in rover [:y] (- y-rover size))
                 (and (< y-rover y) (< (- y y-rover) size)) (assoc-in rover [:y] (+ y-rover size))
                 (and (> x-rover x) (> (- x-rover x) size)) (assoc-in rover [:x] (- x-rover size))
                 (and (< x-rover x) (< (- x x-rover) size)) (assoc-in rover [:x] (+ x-rover size))
-                :else rover))})
+                :else rover))
+   :obstacles obstacles})
 
 (def infinite-world 
-  {:wrap-fn (fn [rover] rover)})
+  {:wrap-fn (fn [rover] rover)
+   :obstacles []})
 
 (defmulti rotate-left :direction)
 
