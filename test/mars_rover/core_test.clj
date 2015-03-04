@@ -145,4 +145,6 @@
       "square world"
       (let [inside-world? (square-world 0 0 2)]
         (inside-world? 
-          (rover 0 0 :north)) => true))))
+          (rover 0 0 :north)) => true
+        (inside-world? 
+          (rover 3 0 :north)) => false))))

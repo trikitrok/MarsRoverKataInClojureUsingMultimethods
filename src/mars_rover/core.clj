@@ -4,7 +4,8 @@
   {:x x :y y :direction direction})
 
 (defn square-world [x y size]
-  (fn [rover] true))
+  (fn [{x-rover :x}] 
+    (< (- x-rover x) size)))
 
 (defmulti rotate-left :direction)
 
