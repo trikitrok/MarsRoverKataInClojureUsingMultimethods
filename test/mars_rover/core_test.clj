@@ -142,7 +142,8 @@
     "about worlds"
     
     (fact
-      "square world"
+      "square world knows if a rover is inside or outside it"
+      
       (let [inside-world? (square-world 0 0 2)]
         (inside-world? 
           (rover 0 0 :north)) => true
@@ -153,4 +154,6 @@
         (inside-world? 
           (rover 0 3 :north)) => false
         (inside-world? 
-          (rover 0 -3 :north)) => false))))
+          (rover 0 -3 :north)) => false
+        (inside-world? 
+          (rover 0 -2 :north)) => true))))

@@ -6,8 +6,8 @@
 (defn square-world [x y size]
   (fn [{x-rover :x y-rover :y}] 
     (and
-      (< (Math/abs (- x-rover x)) size)
-      (< (Math/abs (- y-rover y)) size))))
+      (<= (Math/abs (- x-rover x)) size)
+      (<= (Math/abs (- y-rover y)) size))))
 
 (defn infinite-world [{x-rover :x y-rover :y}]
   true)
