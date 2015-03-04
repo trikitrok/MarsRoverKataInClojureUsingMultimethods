@@ -83,9 +83,15 @@
   (map #(commands-by-signal (str %))
        messages))
 
-(defn apply-command [{rover :rover {wrap :wrap-fn} :world :as rover-and-world} command]
-  (assoc rover-and-world 
-    :rover (wrap (command rover))))
+(defn hit-obstacle? [{x-rover :x y-rover :y} obstacles]
+  (= (some #{{:x x-rover :y y-rover}} obstacles) {:x x-rover :y y-rover}))
+
+(defn apply-command [{rover :rover {obstacles :obstacles wrap :wrap-fn} :world :as rover-and-world} command]
+  (let [new-rover (wrap (command rover))]
+    (if (hit-obstacle? new-rover obstacles)
+      rover-and-world
+      (assoc rover-and-world 
+        :rover new-rover))))
 
 (defn receive [rover messages & {world :world :or {world infinite-world}}]
   (:rover 

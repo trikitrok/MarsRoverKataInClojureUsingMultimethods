@@ -160,4 +160,12 @@
       (receive
         (rover 1 1 :west)
         "f"
-        :world world) => (rover 2 1 :west))))
+        :world world) => (rover 2 1 :west)))
+  
+  (facts 
+    "hitting obstacles"
+    (let [world (square-world 1 1 2 {:x 2 :y 2} {:x 2 :y 1})]
+      (receive
+        (rover 1 2 :east)
+        "f"
+        :world world) => (rover 1 2 :east))))
