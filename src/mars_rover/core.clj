@@ -27,7 +27,7 @@
    :obstacles obstacles})
 
 (def infinite-world 
-  {:wrap-fn (fn [rover] rover)
+  {:wrap-fn identity
    
    :obstacles []})
 
