@@ -96,8 +96,9 @@
   (when (hit-obstacle? rover obstacles)
     (throw (IllegalArgumentException. "Initial position is on an obstacle!"))))
 
+(defn process-commands [rover world commands]
+  (first (reduce apply-command [rover world] commands)))
+
 (defn receive [rover messages & {world :world :or {world infinite-world}}]
-    (validate-initial-position rover world)
-    (first (reduce apply-command 
-              [rover world]
-              (commands messages))))
+  (validate-initial-position rover world)
+  (process-commands rover world (commands messages)))
