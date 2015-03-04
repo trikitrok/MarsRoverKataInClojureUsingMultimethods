@@ -87,15 +87,14 @@
 (defmethod move-backwards :west [{x :x y :y direction :direction}]
   (rover (inc x) y direction))
 
-(def commands-by-signal 
+(def commands-by-message
   {"r" rotate-right
    "l" rotate-left
    "f" move-forwards
    "b" move-backwards})
 
 (defn create-commands-from [messages]
-  (map #(commands-by-signal (str %))
-       messages))
+  (map #(commands-by-message (str %)) messages))
 
 (defn hit-obstacle? [{x-rover :x y-rover :y} obstacles]
   (= (some #{{:x x-rover :y y-rover}} obstacles) {:x x-rover :y y-rover}))
