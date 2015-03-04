@@ -139,7 +139,7 @@
       "brfflbrbrff") => (rover 1 -4 :south))
   
   (facts
-    "about wraping rovers into worlds"
+    "being wrapped into a world"
     
     (let [world (square-world 1 1 2)]
       (receive
