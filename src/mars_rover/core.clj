@@ -79,7 +79,7 @@
    "f" move-forwards
    "b" move-backwards})
 
-(defn commands [messages]
+(defn create-commands-from [messages]
   (map #(commands-by-signal (str %))
        messages))
 
@@ -96,9 +96,9 @@
   (when (hit-obstacle? rover obstacles)
     (throw (IllegalArgumentException. "Initial position is on an obstacle!"))))
 
-(defn process-commands [rover world commands]
+(defn apply-commands [rover world commands]
   (first (reduce apply-command [rover world] commands)))
 
 (defn receive [rover messages & {world :world :or {world infinite-world}}]
   (validate-initial-position rover world)
-  (process-commands rover world (commands messages)))
+  (apply-commands rover world (create-commands-from messages)))
