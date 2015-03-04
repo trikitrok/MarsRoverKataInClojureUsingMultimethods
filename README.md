@@ -1,10 +1,8 @@
-# mars-rover
-
-Mars Rover kata
+## [Mars Rover kata](http://dallashackclub.com/rover) in Clojure using multimethods to play with them.
 
 The project uses [Midje](https://github.com/marick/Midje/).
 
-## How to run the tests
+### How to run the tests
 
 `lein midje` will run all tests.
 
