@@ -136,4 +136,13 @@
     "it can receive several messages"
     (receive
       (rover 0 0 :north)
-      "brfflbrbrff") => (rover 1 -4 :south)))
+      "brfflbrbrff") => (rover 1 -4 :south))
+  
+  (facts
+    "about worlds"
+    
+    (fact
+      "square world"
+      (let [inside-world? (square-world 0 0 2)]
+        (inside-world? 
+          (rover 0 0 :north)) => true))))

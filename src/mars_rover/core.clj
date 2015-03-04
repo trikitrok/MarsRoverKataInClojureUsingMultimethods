@@ -3,6 +3,9 @@
 (defn rover [x y direction]
   {:x x :y y :direction direction})
 
+(defn square-world [x y size]
+  (fn [rover] true))
+
 (defmulti rotate-left :direction)
 
 (defmethod rotate-left :north [{x :x y :y}]
