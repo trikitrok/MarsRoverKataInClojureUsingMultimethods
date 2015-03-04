@@ -139,16 +139,20 @@
       "brfflbrbrff") => (rover 1 -4 :south))
   
   (facts
-    "about worlds"
-    (facts 
-      "wraping rovers into them"
-      (let [world (square-world 1 1 2)]
-        (receive
-          (rover 1 3 :north)
-          "f"
-          :world world) => (rover 1 2 :north)
-        
-        (receive
-          (rover 1 1 :south)
-          "f"
-          :world world) => (rover 1 2 :south)))))
+    "about wraping rovers into worlds"
+    
+    (let [world (square-world 1 1 2)]
+      (receive
+        (rover 1 3 :north)
+        "f"
+        :world world) => (rover 1 2 :north)
+      
+      (receive
+        (rover 1 1 :south)
+        "f"
+        :world world) => (rover 1 2 :south)
+      
+      (receive
+        (rover 3 1 :east)
+        "f"
+        :world world) => (rover 2 1 :east))))
