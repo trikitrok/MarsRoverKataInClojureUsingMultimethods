@@ -4,13 +4,15 @@
   {:x x :y y :direction direction})
 
 (defn square-world [x y size]
-  (fn [{x-rover :x y-rover :y}] 
-    (and
-      (<= (Math/abs (- x-rover x)) size)
-      (<= (Math/abs (- y-rover y)) size))))
+  {:dimensions {:x x :y y :size size}
+   :inside? (fn [{x-rover :x y-rover :y}] 
+              (and
+                (<= (Math/abs (- x-rover x)) size)
+                (<= (Math/abs (- y-rover y)) size)))})
 
-(defn infinite-world [{x-rover :x y-rover :y}]
-  true)
+(def infinite-world 
+  {:inside? (fn [{x-rover :x y-rover :y}] true)
+  :dimensions {}})
 
 (defmulti rotate-left :direction)
 
@@ -78,7 +80,7 @@
   (map #(commands-by-signal (str %))
        messages))
 
-(defn apply-command [{rover :rover inside-world? :world :as rover-and-world} command]
+(defn apply-command [{rover :rover {dimensions :dimensions inside-world? :inside?} :world :as rover-and-world} command]
   (let [new-rover (command rover)]
     (if (inside-world? new-rover)
       (assoc rover-and-world :rover new-rover)
