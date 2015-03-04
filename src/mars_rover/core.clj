@@ -5,9 +5,10 @@
 
 (defn square-world [x y size]
   {:wrap-fn (fn [{x-rover :x y-rover :y :as rover}] 
-              (if (and (> y-rover y) (> (- y-rover y) size))
-                (assoc-in rover [:y] (- y-rover size))
-                rover))})
+              (cond 
+                (and (> y-rover y) (> (- y-rover y) size)) (assoc-in rover [:y] (- y-rover size))
+                (and (< y-rover y) (< (- y y-rover) size)) (assoc-in rover [:y] (+ y-rover size))
+                :else rover))})
 
 (def infinite-world 
   {:wrap-fn (fn [rover] rover)})
