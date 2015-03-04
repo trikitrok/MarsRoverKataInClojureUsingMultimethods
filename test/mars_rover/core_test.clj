@@ -2,7 +2,6 @@
   (:use midje.sweet)
   (:use [mars-rover.core]))
 
-
 (facts 
   "about mars rover"
   

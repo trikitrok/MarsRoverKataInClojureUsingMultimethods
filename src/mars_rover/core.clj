@@ -6,15 +6,29 @@
 (defn square-world [x y size & obstacles]
   {:wrap-fn (fn [{x-rover :x y-rover :y :as rover}] 
               (cond 
-                (and (> y-rover y) (> (- y-rover y) size)) (assoc-in rover [:y] (- y-rover size))
-                (and (< y-rover y) (< (- y y-rover) size)) (assoc-in rover [:y] (+ y-rover size))
-                (and (> x-rover x) (> (- x-rover x) size)) (assoc-in rover [:x] (- x-rover size))
-                (and (< x-rover x) (< (- x x-rover) size)) (assoc-in rover [:x] (+ x-rover size))
+                (and (> y-rover y) 
+                     (> (- y-rover y) size)) 
+                (assoc-in rover [:y] (- y-rover size))
+                
+                (and (< y-rover y) 
+                     (< (- y y-rover) size)) 
+                (assoc-in rover [:y] (+ y-rover size))
+                
+                (and (> x-rover x) 
+                     (> (- x-rover x) size)) 
+                (assoc-in rover [:x] (- x-rover size))
+                
+                (and (< x-rover x) 
+                     (< (- x x-rover) size)) 
+                (assoc-in rover [:x] (+ x-rover size))
+                
                 :else rover))
+   
    :obstacles obstacles})
 
 (def infinite-world 
   {:wrap-fn (fn [rover] rover)
+   
    :obstacles []})
 
 (defmulti rotate-left :direction)
@@ -86,7 +100,8 @@
 (defn hit-obstacle? [{x-rover :x y-rover :y} obstacles]
   (= (some #{{:x x-rover :y y-rover}} obstacles) {:x x-rover :y y-rover}))
 
-(defn apply-command [[rover {obstacles :obstacles wrap :wrap-fn :as world} :as rover-and-world] command]
+(defn apply-command 
+  [[rover {obstacles :obstacles wrap :wrap-fn :as world} :as rover-and-world] command]
   (let [new-rover (wrap (command rover))]
     (if (hit-obstacle? new-rover obstacles)
       rover-and-world
@@ -94,11 +109,13 @@
 
 (defn validate-initial-position [rover {obstacles :obstacles}]
   (when (hit-obstacle? rover obstacles)
-    (throw (IllegalArgumentException. "Initial position is on an obstacle!"))))
+    (throw (IllegalArgumentException. 
+             "Initial position is on an obstacle!"))))
 
 (defn apply-commands [rover world commands]
   (first (reduce apply-command [rover world] commands)))
 
-(defn receive [rover messages & {world :world :or {world infinite-world}}]
+(defn receive 
+  [rover messages & {world :world :or {world infinite-world}}]
   (validate-initial-position rover world)
   (apply-commands rover world (create-commands-from messages)))
