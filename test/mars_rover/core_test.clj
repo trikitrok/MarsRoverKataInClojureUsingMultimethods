@@ -1,6 +1,8 @@
 (ns mars-rover.core-test
   (:use midje.sweet)
-  (:use [mars-rover.core]))
+  (:require [mars-rover.core :refer (receive)]
+            [mars-rover.rover :refer (rover)]
+            [mars-rover.worlds :refer (square-world)]))
 
 (facts 
   "about mars rover"
